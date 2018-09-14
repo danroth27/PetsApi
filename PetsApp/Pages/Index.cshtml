@@ -1,0 +1,33 @@
+﻿@page "/"
+@using PetsClient
+@inject PetsClient.Client PetsClient
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<h2>Pets</h2>
+
+@if (pets != null)
+{
+    <ul>
+        @foreach (var pet in pets)
+        {
+            <li>@pet.Name</li>
+        }
+    </ul>
+}
+else
+{
+    <text>Finding pets...</text>
+}
+
+@functions {
+    IEnumerable<Pet> pets;
+
+    protected override async Task OnInitAsync()
+    {
+        pets = await PetsClient.ApiPetsGetAsync();
+    }
+}
