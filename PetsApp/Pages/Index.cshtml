@@ -1,27 +1,19 @@
 ﻿@page "/"
-@using PetsClient
 @inject PetsClient.Client PetsClient
-<h1>Hello, world!</h1>
+@using PetsClient;
 
-Welcome to your new app.
+<PetsList Pets="pets">
+    <PetTemplate Context="pet">
+        <div class="media">
+            <img class="rounded-circle mr-3" src="@pet.ImageUrl" />
+            <div class="media-body">
+                <h5>@pet.Name</h5>
+                <p>@pet.Description</p>
+            </div>
+        </div>
+    </PetTemplate>
+</PetsList>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
-
-<h2>Pets</h2>
-
-@if (pets != null)
-{
-    <ul>
-        @foreach (var pet in pets)
-        {
-            <li>@pet.Name</li>
-        }
-    </ul>
-}
-else
-{
-    <text>Finding pets...</text>
-}
 
 @functions {
     IEnumerable<Pet> pets;

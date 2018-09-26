@@ -24,13 +24,11 @@ namespace PetsApi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Age");
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ImageUrl");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("Owner");
-
-                    b.Property<string>("Type");
 
                     b.HasKey("Id");
 

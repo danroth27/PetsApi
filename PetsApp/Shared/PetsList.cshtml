@@ -1,0 +1,24 @@
+﻿@using PetsClient
+
+<h1>Pets</h1>
+
+@if (Pets != null)
+{
+    <ul class="list-group">
+        @foreach (var pet in Pets)
+        {
+            <li class="list-group-item">
+                @PetTemplate(pet)
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h2>Looking for pets...</h2>
+}
+
+@functions {
+[Parameter] protected IEnumerable<Pet> Pets { get; set; }
+[Parameter] protected RenderFragment<Pet> PetTemplate { get; set; }
+}

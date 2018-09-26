@@ -149,13 +149,9 @@
           "format": "int32",
           "type": "integer"
         },
-        "owner": { "type": "string" },
         "name": { "type": "string" },
-        "type": { "type": "string" },
-        "age": {
-          "format": "int32",
-          "type": "integer"
-        }
+        "imageUrl": { "type": "string" },
+        "description": { "type": "string" }
       }
     },
     "ProblemDetails": {

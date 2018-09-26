@@ -53,6 +53,7 @@ namespace PetsApi
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
 
             app.UseSwagger();
@@ -62,7 +63,7 @@ namespace PetsApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pets API V1");
             });
 
-            app.UseBlazor<PetsApp.Program>();
+            app.UseBlazor<PetsApp.Startup>();
         }
     }
 }

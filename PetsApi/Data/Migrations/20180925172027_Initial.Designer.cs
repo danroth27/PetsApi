@@ -9,7 +9,7 @@ using PetsApi.Models;
 namespace PetsApi.Data.Migrations
 {
     [DbContext(typeof(PetsContext))]
-    [Migration("20180912181541_Initial")]
+    [Migration("20180925172027_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,13 +26,11 @@ namespace PetsApi.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Age");
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ImageUrl");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("Owner");
-
-                    b.Property<string>("Type");
 
                     b.HasKey("Id");
 
