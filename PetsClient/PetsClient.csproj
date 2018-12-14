@@ -6,14 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="NSwag.MSBuild" Version="11.19.2">
+    <PackageReference Include="NSwag.MSBuild.CodeGeneration" Version="12.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+
+    <ServiceProjectReference Include="..\PetsApi\PetsApi.csproj"
+                             ClassName="Client"
+                             ClassNamespace="PetsClient"
+                             CodeGenerator="NSwagCSharp" />
   </ItemGroup>
 
-  <Target Name="NSwag" BeforeTargets="Build">
-    <Exec Command="$(NSwagExe) swagger2csclient /input:pets-swagger.json /namespace:$(RootNamespace) /InjectHttpClient:true /UseBaseUrl:false /output:PetsClient.cs" />
-  </Target>
-  
 </Project>

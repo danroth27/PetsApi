@@ -5,7 +5,7 @@
 <PetsList Pets="pets">
     <PetTemplate Context="pet">
         <div class="media">
-            <img class="rounded-circle mr-3" src="@pet.ImageUrl" />
+            <img class="rounded-circle mr-3" src="@("https://localhost:44343/" + pet.ImageUrl)" />
             <div class="media-body">
                 <h5>@pet.Name</h5>
                 <p>@pet.Description</p>
@@ -20,6 +20,6 @@
 
     protected override async Task OnInitAsync()
     {
-        pets = await PetsClient.ApiPetsGetAsync();
+        pets = await PetsClient.GetPetAllAsync();
     }
 }

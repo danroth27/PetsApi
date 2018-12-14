@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PetsApi.Models;
 
 [assembly:ApiConventionType(typeof(DefaultApiConventions))]
+
 namespace PetsApi.Controllers
 {
     [Route("api/[controller]")]

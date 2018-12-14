@@ -12,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using PetsApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace PetsApi
 {
@@ -30,13 +29,12 @@ namespace PetsApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddCors();
+
             services.AddDbContext<PetsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PetsContext")));
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "Pets API", Version = "v1" });
-            });
+            services.AddOpenApiDocument(settings => settings.Title = "Pets API");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,18 +50,13 @@ namespace PetsApi
                 app.UseHsts();
             }
 
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc();
 
             app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pets API V1");
-            });
-
-            app.UseBlazor<PetsApp.Startup>();
+            app.UseSwaggerUi3();
         }
     }
 }
